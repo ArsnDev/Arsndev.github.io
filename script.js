@@ -195,41 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Counter animation for stats
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-number');
-        
-        counters.forEach(counter => {
-            const target = parseInt(counter.textContent);
-            const increment = target / 50;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    counter.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    counter.textContent = Math.floor(current);
-                }
-            }, 30);
-        });
-    }
-
-    // Trigger counter animation when stats section is visible
-    const statsSection = document.querySelector('.about-stats');
-    if (statsSection) {
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        });
-        
-        statsObserver.observe(statsSection);
-    }
 
     // Copy to clipboard functionality (for contact info)
     const contactMethods = document.querySelectorAll('.contact-method');
