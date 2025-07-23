@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omok Server API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui.css" />
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+        .swagger-ui .topbar {
+            background-color: #2c3e50;
+        }
+        .swagger-ui .topbar .link {
+            color: #ecf0f1;
+        }
+        .header-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header-info h1 {
+            margin: 0 0 1rem 0;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+        .header-info p {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .api-info {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            padding: 0 2rem;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .info-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .info-card h3 {
+            margin: 0 0 1rem 0;
+            color: #2c3e50;
+        }
+        .info-card ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        .info-card li {
+            margin: 0.5rem 0;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-info">
+        <h1>🎮 Omok Server API</h1>
+        <p>실시간 오목 게임 서버의 RESTful API 문서</p>
+    </div>
+
+    <div class="api-info">
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🔐 인증 시스템</h3>
+                <ul>
+                    <li>JWT 기반 토큰 인증</li>
+                    <li>Bearer 토큰 헤더 인증</li>
+                    <li>회원가입 및 로그인 지원</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🎯 주요 기능</h3>
+                <ul>
+                    <li>사용자 관리 (회원가입/로그인)</li>
+                    <li>매치메이킹 시스템</li>
+                    <li>경기 기록 관리</li>
+                    <li>실시간 게임 통신 (SignalR)</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>🛠 기술 스택</h3>
+                <ul>
+                    <li>ASP.NET Core Web API</li>
+                    <li>MySQL 데이터베이스</li>
+                    <li>SignalR 실시간 통신</li>
+                    <li>SqlKata ORM</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>📝 참고사항:</strong> 이 문서는 정적으로 생성된 API 문서입니다. 
+            실제 API 호출은 서버가 실행 중일 때만 가능합니다. 
+            각 엔드포인트의 스펙과 요청/응답 형식을 확인하실 수 있습니다.
+        </div>
+    </div>
+
+    <div id="swagger-ui"></div>
+
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.9.0/swagger-ui-standalone-preset.js"></script>
+    <script>
+        const spec = {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Omok Server API",
+    "version": "v1",
+    "description": "실시간 오목 게임 서버 API - JWT 인증을 통한 사용자 관리, 매치메이킹, 게임 기록 관리 기능을 제공합니다."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5043",
+      "description": "Development Server"
+    }
+  ],
+  "paths": {
+    "/api/Matches": {
+      "post": {
+        "tags": [
+          "Matches"
+        ],
+        "summary": "경기 결과 생성",
+        "description": "새로운 경기 결과를 생성합니다.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "경기 결과가 성공적으로 생성되었습니다."
+          },
+          "400": {
+            "description": "잘못된 요청입니다."
+          },
+          "401": {
+            "description": "인증이 필요합니다."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/Matches/history/{userId}": {
+      "get": {
+        "tags": [
+          "Matches"
+        ],
+        "summary": "사용자 경기 기록 조회",
+        "description": "특정 사용자의 경기 기록을 조회합니다.",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "조회할 사용자의 ID",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "경기 기록 조회 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "matchId": {
+                        "type": "integer",
+                        "description": "경기 ID"
+                      },
+                      "winnerId": {
+                        "type": "integer",
+                        "description": "승자 ID"
+                      },
+                      "loserId": {
+                        "type": "integer",
+                        "description": "패자 ID"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "경기 시간"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "사용자를 찾을 수 없습니다."
+          }
+        }
+      }
+    },
+    "/api/Matchmaking/queue": {
+      "post": {
+        "tags": [
+          "Matchmaking"
+        ],
+        "summary": "매치메이킹 큐 참가",
+        "description": "매치메이킹 큐에 참가하여 상대방을 찾습니다.",
+        "responses": {
+          "200": {
+            "description": "매치메이킹 큐 참가 성공"
+          },
+          "401": {
+            "description": "인증이 필요합니다."
+          },
+          "409": {
+            "description": "이미 큐에 참가 중입니다."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/Test/users": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "summary": "전체 사용자 목록 조회 (테스트용)",
+        "description": "개발/테스트용 엔드포인트입니다.",
+        "responses": {
+          "200": {
+            "description": "사용자 목록 조회 성공"
+          }
+        }
+      }
+    },
+    "/api/Test/insert-dummy": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "summary": "더미 데이터 삽입 (테스트용)",
+        "description": "개발/테스트용 더미 데이터를 삽입합니다.",
+        "responses": {
+          "200": {
+            "description": "더미 데이터 삽입 성공"
+          }
+        }
+      }
+    },
+    "/api/Users/register": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "사용자 회원가입",
+        "description": "새로운 사용자 계정을 생성합니다.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "회원가입 성공"
+          },
+          "400": {
+            "description": "잘못된 요청 (유효성 검사 실패)"
+          },
+          "409": {
+            "description": "이미 존재하는 사용자명입니다."
+          }
+        }
+      }
+    },
+    "/api/Users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "사용자 로그인",
+        "description": "사용자 인증 후 JWT 토큰을 발급합니다.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "로그인 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "JWT 액세스 토큰"
+                    },
+                    "userId": {
+                      "type": "integer",
+                      "description": "사용자 ID"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "사용자명"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "잘못된 사용자명 또는 비밀번호입니다."
+          }
+        }
+      }
+    },
+    "/api/Users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "현재 사용자 정보 조회",
+        "description": "JWT 토큰을 통해 현재 인증된 사용자의 정보를 조회합니다.",
+        "responses": {
+          "200": {
+            "description": "사용자 정보 조회 성공",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userId": {
+                      "type": "integer",
+                      "description": "사용자 ID"
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "사용자명"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "계정 생성일"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "인증이 필요합니다."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateMatchRequest": {
+        "type": "object",
+        "required": ["winnerId", "loserId"],
+        "properties": {
+          "winnerId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "승리한 플레이어의 사용자 ID"
+          },
+          "loserId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "패배한 플레이어의 사용자 ID"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequestDto": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20,
+            "description": "사용자명 (3-20자)"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "description": "비밀번호 (최소 6자)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterRequestDto": {
+        "type": "object",
+        "required": ["username", "password"],
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 20,
+            "description": "사용자명 (3-20자, 영문/숫자만 허용)"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "description": "비밀번호 (최소 6자)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme.\n\n사용법:\n1. 먼저 '/api/Users/login' 엔드포인트로 로그인하여 JWT 토큰을 받아옵니다.\n2. 아래 입력창에 'Bearer [발급받은토큰]' 형식으로 입력합니다.\n3. 예시: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+};
+
+        window.onload = function() {
+            SwaggerUIBundle({
+                url: '',
+                spec: spec,
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                plugins: [
+                    SwaggerUIBundle.plugins.DownloadUrl
+                ],
+                layout: "StandaloneLayout",
+                tryItOutEnabled: false, // API 호출 버튼 비활성화 (정적 문서)
+                supportedSubmitMethods: [], // 실제 요청 전송 비활성화
+                validatorUrl: null,
+                docExpansion: 'list',
+                defaultModelsExpandDepth: 2,
+                defaultModelExpandDepth: 2
+            });
+        }
+    </script>
+</body>
+</html>
