@@ -308,6 +308,75 @@ section {
     font-weight: 500;
 }
 
+/* Education Section */
+.education {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.education-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.education-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.education-logo {
+    flex-shrink: 0;
+}
+
+.university-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.education-details {
+    flex: 1;
+}
+
+.university-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.degree {
+    font-size: 1.1rem;
+    color: #3498db;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.graduation-year {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+}
+
+.education-description p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
 /* Projects Section */
 .projects-grid {
     display: grid;
@@ -700,6 +769,22 @@ section {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .education-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .university-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .university-name {
+        font-size: 1.3rem;
     }
 }
 
