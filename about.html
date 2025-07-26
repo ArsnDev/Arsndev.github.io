@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 - 권용민</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .intro-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .intro-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .intro-card p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #667eea20 0%, #764ba220 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: #2980b9;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #3498db;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            width: calc(50% - 2rem);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: calc(50% + 2rem);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 15px;
+            height: 15px;
+            background: #3498db;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            right: -1.5rem;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            left: -1.5rem;
+        }
+        
+        .timeline-date {
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline::before {
+                left: 1rem;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 3rem);
+                left: 3rem !important;
+            }
+            
+            .timeline-item::before {
+                left: -2.5rem !important;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">권용민</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link active">자기소개</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">프로젝트</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">연락처</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>
+                게임 서버 개발에 대한 깊은 열정을 가진 개발자로서,<br>
+                끊임없는 학습과 도전을 통해 성장하고 있습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="content-section">
+        <div class="container">
+            <a href="index.html" class="back-button">
+                ← 홈으로 돌아가기
+            </a>
+            
+            <div class="intro-card">
+                <h3>견고한 기초와 빠른 학습 능력</h3>
+                
+                <p>
+                    <span class="highlight">견고한 기초 습득에 그치지 않고, 새로운 기술에 대한 끊임없는 호기심과 빠른 학습 능력</span>은 저의 또 다른 강점입니다.
+                    배우는 것을 두려워하지 않고, 습득한 지식을 빠르게 체화하여 실제 프로젝트에 적용하는 데 능숙합니다.
+                </p>
+                
+                <p>
+                    특히 <span class="highlight">C++ 멀티플레이어 게임 서버 개발 과정에서 FlatBuffers, Boost.Asio, QuadTree 등 생소한 기술들을 단기간에
+                    학습하고 실제 프로젝트에 성공적으로 적용한 경험</span>이 이를 뒷받침합니다.
+                </p>
+            </div>
+
+            <div class="intro-card">
+                <h3>CppMMO 서버 최적화 - 체계적 문제 해결 능력</h3>
+                
+                <p>
+                    가장 기억에 남는 프로젝트는 <span class="highlight">CppMMO 서버의 성능 병목 현상을 해결한 체계적인 최적화 작업</span>입니다. 이 프로젝트를 통해
+                    단순히 기능을 구현하는 것을 넘어, 실제 서비스 환경에서 발생할 수 있는 잠재적 문제들을 예측하고 해결하는 심도 깊은
+                    문제 해결 능력과 시스템 확장성 설계 역량을 기를 수 있었습니다.
+                </p>
+                
+                <p>
+                    <strong>문제 분석:</strong> MMO 환경에서 과도한 <span class="highlight">60 TPS 업데이트 빈도가 네트워크 부하와 서버 자원 제약으로 이어지는 문제</span>를
+                    파악했습니다.
+                </p>
+                
+                <p>
+                    <strong>해결 방안:</strong> <span class="highlight">MMO 장르 특성에 맞는 30 TPS로 조정하여 서버 효율성과 플레이어 경험의 균형점</span>을 찾았습니다.
+                </p>
+                
+                <p>
+                    이러한 단계별 최적화 과정을 통해 서버 성능을 종합적으로 개선했으며, 더 중요한 것은 <span class="highlight">문제를 체계적으로 분석하고
+                    데이터 기반으로 해결하는 방법론을 체득했다</span>는 점입니다. 이는 실무에서 마주할 복잡한 기술적 과제들을 효과적으로
+                    해결할 수 있는 핵심 역량이라고 생각합니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">개발 철학</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h4>성능 최적화</h4>
+                    <p>사용자 경험을 최우선으로 하는 고성능 시스템 구축을 추구합니다. 메모리 효율성과 처리 속도 최적화를 통해 안정적인 서비스를 제공합니다.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📚</div>
+                    <h4>지속적 학습</h4>
+                    <p>빠르게 변화하는 기술 트렌드에 발맞춰 끊임없이 학습하고 성장합니다. 새로운 도전을 두려워하지 않고 적극적으로 받아들입니다.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔧</div>
+                    <h4>문제 해결</h4>
+                    <p>복잡한 기술적 문제에 직면했을 때 체계적이고 논리적인 접근을 통해 근본적인 해결책을 찾아냅니다.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h4>협업과 소통</h4>
+                    <p>팀원들과의 원활한 소통을 통해 더 나은 결과를 만들어냅니다. 코드 리뷰와 지식 공유를 통해 함께 성장합니다.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h4>효율성 추구</h4>
+                    <p>단순히 작동하는 코드가 아닌, 효율적이고 유지보수 가능한 코드를 작성하기 위해 노력합니다.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌟</div>
+                    <h4>사용자 중심</h4>
+                    <p>최종 사용자인 플레이어들의 경험을 최우선으로 고려하여 안정적이고 즐거운 게임 환경을 만들어갑니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">개발 여정</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2024년 상반기</div>
+                    <div class="timeline-title">게임 서버 개발 시작</div>
+                    <p>C++과 Boost.Asio를 활용한 네트워크 프로그래밍 학습을 시작하며 게임 서버 개발에 입문했습니다.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024년 중반</div>
+                    <div class="timeline-title">MMO 서버 아키텍처 설계</div>
+                    <p>Server Authority 기반의 실시간 멀티플레이어 게임 서버 아키텍처를 설계하고 구현을 시작했습니다.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024년 7월</div>
+                    <div class="timeline-title">성능 최적화 도전</div>
+                    <p>QuadTree AOI 시스템과 분산 스폰 메커니즘을 통해 96%의 성능 개선을 달성했습니다.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024년 하반기</div>
+                    <div class="timeline-title">대규모 접속 지원</div>
+                    <p>메모리 풀링과 패킷 배칭을 통해 600명 동시 접속을 안정적으로 지원하는 서버를 완성했습니다.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">현재</div>
+                    <div class="timeline-title">지속적인 학습과 발전</div>
+                    <p>Unity 클라이언트 개발과 더 나은 게임 서버 기술 학습을 통해 전문성을 확장해나가고 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="content-section">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">함께 만들어가요</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                게임 서버 개발에 대한 열정을 나누고 싶습니다. 
+                함께 협업하거나 기술에 대해 이야기하고 싶으시다면 언제든 연락해주세요.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <a href="index.html#projects" class="btn btn-primary">프로젝트 보기</a>
+                <a href="index.html#contact" class="btn btn-secondary">연락하기</a>
+                <a href="https://arsen-cv.tistory.com" class="btn btn-secondary">기술 블로그</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 권용민. 모든 권리 보유.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">홈</a>
+                    <a href="about.html">자기소개</a>
+                    <a href="index.html#projects">프로젝트</a>
+                    <a href="index.html#contact">연락처</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
