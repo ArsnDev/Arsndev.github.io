@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmokServer - C# 실시간 오목 게임 서버</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: #2980b9;
+        }
+        
+        .flow-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .flow-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .api-endpoint {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .api-endpoint h4 {
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">권용민</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">소개</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">프로젝트</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">연락처</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <h1>OmokServer</h1>
+            <p>
+                ASP.NET Core Web API와 SignalR을 활용한 온라인 오목 게임 서버입니다. 
+                RESTful API를 통한 사용자 관리와 SignalR을 통한 실시간 게임플레이를 구현했습니다.
+            </p>
+            <div class="tech-badges">
+                <span class="tech-badge">C#</span>
+                <span class="tech-badge">ASP.NET Core</span>
+                <span class="tech-badge">SignalR</span>
+                <span class="tech-badge">JWT</span>
+                <span class="tech-badge">MySQL</span>
+                <span class="tech-badge">BCrypt</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="content-section">
+        <div class="container">
+            <a href="index.html#projects" class="back-button">
+                ← 프로젝트 목록으로 돌아가기
+            </a>
+            
+            <h2 class="section-title">프로젝트 개요</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; text-align: center; max-width: 800px; margin: 0 auto;">
+                OmokServer는 현대적인 웹 기술을 활용하여 구현한 완전한 온라인 오목 게임 서버입니다. 
+                사용자 인증, 매치메이킹, 실시간 게임플레이, 경기 결과 저장 등 온라인 게임에 필요한 모든 기능을 포함합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Video -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">프로젝트 시연 영상</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; color: #666;">실제 게임 플레이와 주요 기능들을 영상으로 확인해보세요!</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 0 auto; max-width: 800px;">
+                <iframe 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"
+                    src="https://www.youtube.com/embed/wK0cqr8DZhA" 
+                    title="OmokServer 프로젝트 시연 영상"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">핵심 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>JWT 인증 시스템</h3>
+                    <p>BCrypt를 이용한 안전한 비밀번호 해싱과 JWT Bearer 토큰 기반의 사용자 인증 시스템을 구현했습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>SignalR 실시간 통신</h3>
+                    <p>SignalR Hub를 통한 양방향 실시간 통신으로 부드러운 멀티플레이어 게임 경험을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>공정한 매치메이킹</h3>
+                    <p>ConcurrentQueue와 락을 사용한 안전하고 공정한 매치메이킹 시스템으로 플레이어들을 자동으로 매칭합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>완전한 게임 로직</h3>
+                    <p>오목 게임의 모든 규칙을 구현했습니다. 승패 판정, 턴 관리, 게임 상태 검증 등을 자동으로 처리합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>경기 결과 관리</h3>
+                    <p>모든 경기 결과를 데이터베이스에 저장하고, 사용자별 전적 조회 기능을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>계층형 아키텍처</h3>
+                    <p>DTO, Repository, Service 패턴을 적용한 깔끔한 코드 구조로 유지보수성과 확장성을 확보했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Flow -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">게임 플로우</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div>
+                        <h4>사용자 인증</h4>
+                        <p>회원가입 또는 로그인을 통해 JWT 토큰을 발급받습니다.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div>
+                        <h4>SignalR 연결</h4>
+                        <p>JWT 토큰을 사용하여 GameHub에 연결하고 사용자를 등록합니다.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div>
+                        <h4>매치메이킹</h4>
+                        <p>매치메이킹 큐에 참가하여 다른 플레이어와 자동으로 매칭됩니다.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <div>
+                        <h4>게임 시작</h4>
+                        <p>게임룸이 생성되고 두 플레이어가 실시간 오목 게임을 시작합니다.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <div>
+                        <h4>실시간 게임플레이</h4>
+                        <p>턴제 방식으로 오목돌을 놓으며, 실시간으로 게임 상태가 동기화됩니다.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">6</div>
+                    <div>
+                        <h4>승패 판정 & 결과 저장</h4>
+                        <p>5목이 완성되면 자동으로 승패를 판정하고 결과를 데이터베이스에 저장합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">API 엔드포인트</h2>
+            
+            <h3 style="margin-bottom: 2rem; color: #2c3e50;">사용자 관리 API</h3>
+            <div class="api-endpoint">
+                <h4>POST /api/users/register</h4>
+                <p>새로운 사용자 계정을 생성합니다. BCrypt를 사용하여 비밀번호를 안전하게 해싱합니다.</p>
+                <div class="code-example">
+                    <pre><code class="language-json">{
+  "username": "player1",
+  "password": "securePassword123",
+  "email": "player1@example.com"
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="api-endpoint">
+                <h4>POST /api/users/login</h4>
+                <p>사용자 인증을 수행하고 JWT 토큰을 발급합니다.</p>
+                <div class="code-example">
+                    <pre><code class="language-json">{
+  "username": "player1",
+  "password": "securePassword123"
+}
+
+// Response
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiry": "2024-12-31T23:59:59Z",
+  "user": {
+    "id": 1,
+    "username": "player1",
+    "email": "player1@example.com"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">매치메이킹 API</h3>
+            <div class="api-endpoint">
+                <h4>POST /api/matchmaking/queue</h4>
+                <p>매치메이킹 큐에 참가합니다. 자동으로 다른 플레이어와 매칭됩니다.</p>
+            </div>
+
+            <div class="api-endpoint">
+                <h4>DELETE /api/matchmaking/queue</h4>
+                <p>매치메이킹 큐에서 나갑니다.</p>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">경기 기록 API</h3>
+            <div class="api-endpoint">
+                <h4>GET /api/matches/user/{userId}</h4>
+                <p>특정 사용자의 경기 기록을 조회합니다.</p>
+                <div class="code-example">
+                    <pre><code class="language-json">[
+  {
+    "id": 1,
+    "player1Id": 1,
+    "player2Id": 2,
+    "winnerId": 1,
+    "startTime": "2024-01-15T14:30:00Z",
+    "endTime": "2024-01-15T14:45:00Z",
+    "moves": "8,8;9,9;7,7;10,10;6,6;11,11;5,5"
+  }
+]</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SignalR Hub -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">SignalR 실시간 통신</h2>
+            
+            <h3 style="margin-bottom: 2rem; color: #2c3e50;">GameHub 구현</h3>
+            <div class="code-example">
+                <pre><code class="language-csharp">[Authorize]
+public class GameHub : Hub
+{
+    private readonly IMatchmakingService _matchmakingService;
+    private readonly GameRoomManager _gameRoomManager;
+    
+    // 사용자 등록
+    public async Task RegisterUser()
+    {
+        var userId = Context.UserIdentifier;
+        var connectionId = Context.ConnectionId;
+        
+        await _userConnectionManager.AddConnection(userId, connectionId);
+        await Groups.AddToGroupAsync(connectionId, $"User_{userId}");
+    }
+    
+    // 오목돌 놓기
+    public async Task PlaceStone(int gameId, int x, int y)
+    {
+        var userId = Context.UserIdentifier;
+        var gameRoom = _gameRoomManager.GetGameRoom(gameId);
+        
+        if (gameRoom?.IsPlayerTurn(userId) == true)
+        {
+            var result = gameRoom.PlaceStone(userId, x, y);
+            
+            // 모든 플레이어에게 수 정보 전송
+            await Clients.Group($"Game_{gameId}")
+                .InvokeAsync("StonePlaced", x, y, userId);
+            
+            // 게임 종료 확인
+            if (result.IsGameOver)
+            {
+                await HandleGameOver(gameRoom, result);
+            }
+        }
+    }
+    
+    // 게임 종료 처리
+    private async Task HandleGameOver(GameRoom gameRoom, GameResult result)
+    {
+        // 데이터베이스에 결과 저장
+        await _matchHistoryService.SaveMatch(new Match
+        {
+            Player1Id = gameRoom.Player1Id,
+            Player2Id = gameRoom.Player2Id,
+            WinnerId = result.WinnerId,
+            StartTime = gameRoom.StartTime,
+            EndTime = DateTime.UtcNow,
+            Moves = string.Join(";", gameRoom.Moves)
+        });
+        
+        // 클라이언트에 게임 종료 알림
+        await Clients.Group($"Game_{gameRoom.Id}")
+            .InvokeAsync("GameOver", result);
+    }
+}</code></pre>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">클라이언트 이벤트</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📤 클라이언트 → 서버</h4>
+                    <ul style="text-align: left; color: #666;">
+                        <li><code>RegisterUser</code> - 사용자 등록</li>
+                        <li><code>JoinMatchmaking</code> - 매치메이킹 참가</li>
+                        <li><code>PlaceStone</code> - 오목돌 놓기</li>
+                        <li><code>LeaveGame</code> - 게임 나가기</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📥 서버 → 클라이언트</h4>
+                    <ul style="text-align: left; color: #666;">
+                        <li><code>MatchFound</code> - 매칭 성공</li>
+                        <li><code>GameStarted</code> - 게임 시작</li>
+                        <li><code>StonePlaced</code> - 돌 놓음 알림</li>
+                        <li><code>GameOver</code> - 게임 종료</li>
+                        <li><code>PlayerDisconnected</code> - 상대방 접속 끊김</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">시스템 아키텍처</h2>
+            <div class="architecture-diagram">
+                <pre style="text-align: left; background: #f8f9fa; padding: 2rem; border-radius: 10px; font-family: 'Courier New', monospace; color: #2c3e50; overflow-x: auto;">
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Game Client   │────│  ASP.NET Core   │────│     MySQL       │
+│  (Unity/Web)    │    │    Web API      │    │   Database      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         │ SignalR               │ Entity Framework      │
+         │ WebSocket             │ Core / SqlKata        │
+         │                       │                       │
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   SignalR Hub   │────│   Game Logic    │────│  Match History  │
+│  (GameHub)      │    │   Services      │    │   Repository    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         │                       │                       │
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ Connection      │    │  Matchmaking    │    │    Game Room    │
+│   Manager       │    │    Service      │    │    Manager      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Implementation -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">핵심 구현 코드</h2>
+            
+            <h3 style="margin-bottom: 2rem; color: #2c3e50;">매치메이킹 서비스</h3>
+            <div class="code-example">
+                <pre><code class="language-csharp">public class MatchmakingService : IMatchmakingService
+{
+    private readonly ConcurrentQueue&lt;string&gt; _waitingPlayers = new();
+    private readonly ConcurrentDictionary&lt;string, DateTime&gt; _queueTimes = new();
+    private readonly object _matchmakingLock = new();
+    
+    public async Task&lt;bool&gt; JoinQueue(string userId)
+    {
+        lock (_matchmakingLock)
+        {
+            if (_queueTimes.ContainsKey(userId))
+                return false; // Already in queue
+                
+            _waitingPlayers.Enqueue(userId);
+            _queueTimes[userId] = DateTime.UtcNow;
+            
+            // Try to make a match
+            return TryCreateMatch();
+        }
+    }
+    
+    private bool TryCreateMatch()
+    {
+        if (_waitingPlayers.Count >= 2)
+        {
+            if (_waitingPlayers.TryDequeue(out string player1) &&
+                _waitingPlayers.TryDequeue(out string player2))
+            {
+                // Create new game room
+                var gameRoom = _gameRoomManager.CreateGameRoom(player1, player2);
+                
+                // Notify players
+                _ = Task.Run(async () =>
+                {
+                    await _hubContext.Clients.User(player1)
+                        .InvokeAsync("MatchFound", gameRoom.Id, player2);
+                    await _hubContext.Clients.User(player2)
+                        .InvokeAsync("MatchFound", gameRoom.Id, player1);
+                });
+                
+                // Remove from queue tracking
+                _queueTimes.TryRemove(player1, out _);
+                _queueTimes.TryRemove(player2, out _);
+                
+                return true;
+            }
+        }
+        return false;
+    }
+}</code></pre>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">게임룸 관리</h3>
+            <div class="code-example">
+                <pre><code class="language-csharp">public class GameRoomManager
+{
+    private readonly ConcurrentDictionary&lt;int, GameRoom&gt; _gameRooms = new();
+    private int _nextGameId = 1;
+    
+    public GameRoom CreateGameRoom(string player1Id, string player2Id)
+    {
+        var gameId = Interlocked.Increment(ref _nextGameId);
+        var gameRoom = new GameRoom
+        {
+            Id = gameId,
+            Player1Id = player1Id,
+            Player2Id = player2Id,
+            Board = new int[15, 15], // 15x15 오목판
+            CurrentTurn = player1Id,
+            StartTime = DateTime.UtcNow,
+            Status = GameStatus.InProgress
+        };
+        
+        _gameRooms[gameId] = gameRoom;
+        return gameRoom;
+    }
+    
+    public GameResult PlaceStone(int gameId, string playerId, int x, int y)
+    {
+        if (!_gameRooms.TryGetValue(gameId, out var gameRoom))
+            return GameResult.InvalidGame();
+            
+        // 턴 확인
+        if (gameRoom.CurrentTurn != playerId)
+            return GameResult.NotYourTurn();
+            
+        // 보드 범위 확인
+        if (x < 0 || x >= 15 || y < 0 || y >= 15)
+            return GameResult.InvalidPosition();
+            
+        // 이미 돌이 놓여있는지 확인
+        if (gameRoom.Board[x, y] != 0)
+            return GameResult.PositionOccupied();
+            
+        // 돌 놓기
+        int stoneColor = gameRoom.Player1Id == playerId ? 1 : 2;
+        gameRoom.Board[x, y] = stoneColor;
+        gameRoom.Moves.Add($"{x},{y}");
+        
+        // 승리 조건 확인
+        if (CheckWinCondition(gameRoom.Board, x, y, stoneColor))
+        {
+            gameRoom.Status = GameStatus.Finished;
+            gameRoom.WinnerId = playerId;
+            gameRoom.EndTime = DateTime.UtcNow;
+            
+            return GameResult.GameWon(playerId);
+        }
+        
+        // 턴 변경
+        gameRoom.CurrentTurn = gameRoom.Player1Id == playerId 
+            ? gameRoom.Player2Id : gameRoom.Player1Id;
+            
+        return GameResult.Success();
+    }
+    
+    private bool CheckWinCondition(int[,] board, int x, int y, int color)
+    {
+        // 4방향(가로, 세로, 대각선 2개)으로 5목 확인
+        int[,] directions = { {1,0}, {0,1}, {1,1}, {1,-1} };
+        
+        for (int dir = 0; dir < 4; dir++)
+        {
+            int count = 1; // 현재 돌 포함
+            int dx = directions[dir, 0];
+            int dy = directions[dir, 1];
+            
+            // 양방향으로 같은 색 돌 개수 세기
+            count += CountStonesInDirection(board, x, y, dx, dy, color);
+            count += CountStonesInDirection(board, x, y, -dx, -dy, color);
+            
+            if (count >= 5) return true;
+        }
+        
+        return false;
+    }
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Features -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">보안 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>JWT 토큰 인증</h3>
+                    <p>JSON Web Token을 사용한 stateless 인증 시스템으로 확장성과 보안성을 모두 확보했습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>BCrypt 해싱</h3>
+                    <p>업계 표준인 BCrypt를 사용하여 사용자 비밀번호를 안전하게 해싱하여 저장합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>HTTPS 통신</h3>
+                    <p>모든 API 통신은 HTTPS를 통해 암호화되어 전송되며, SignalR도 WSS를 사용합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>입력 검증</h3>
+                    <p>모든 사용자 입력은 서버에서 철저히 검증되어 부정한 요청을 차단합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Plans -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">향후 개발 계획</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Refresh Token 시스템</h3>
+                    <p>더욱 안전한 토큰 관리를 위한 Refresh Token 기반 인증 시스템 고도화를 계획하고 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Unity 클라이언트</h3>
+                    <p>완성된 서버 API와 SignalR을 연동하는 Unity 기반 게임 클라이언트 개발을 진행할 예정입니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>중복 로그인 방지</h3>
+                    <p>UserSessionManager를 통한 단일 세션 관리로 중복 로그인을 방지하는 시스템을 구축할 계획입니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>실시간 모니터링</h3>
+                    <p>게임 서버의 성능과 플레이어 활동을 실시간으로 모니터링하는 대시보드를 개발할 예정입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links and Resources -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">프로젝트 링크</h2>
+            <div class="feature-grid">
+                <div class="feature-card" style="text-align: center;">
+                    <div class="feature-icon">📁</div>
+                    <h3>GitHub Repository</h3>
+                    <p>전체 소스코드와 API 문서를 확인하실 수 있습니다.</p>
+                    <a href="https://github.com/ArsnDev/Omok_Server" class="btn btn-primary" style="margin-top: 1rem;">GitHub 보기</a>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div class="feature-icon">🌐</div>
+                    <h3>API 문서</h3>
+                    <p>Swagger를 통한 상세한 API 문서를 제공합니다.</p>
+                    <a href="omokserver-api.html" class="btn btn-secondary" style="margin-top: 1rem;" target="_blank">API 문서 보기</a>
+                </div>
+                <div class="feature-card" style="text-align: center;">
+                    <div class="feature-icon">🎮</div>
+                    <h3>라이브 데모</h3>
+                    <p>실제 동작하는 오목 게임을 체험해보세요.</p>
+                    <a href="omok-game/" class="btn btn-secondary" style="margin-top: 1rem;">체험하기</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html#projects" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    다른 프로젝트도 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 권용민. 모든 권리 보유.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">홈</a>
+                    <a href="index.html#projects">프로젝트</a>
+                    <a href="index.html#contact">연락처</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

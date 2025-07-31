@@ -1,0 +1,285 @@
+/* 오목 게임 클라이언트 CSS */
+
+/* 전체 레이아웃 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 로딩 스피너 */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* 게임 보드 스타일 */
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-board {
+    width: 100%;
+    max-width: 600px;
+    height: 600px;
+    border: 2px solid #333;
+    background-color: #deb887;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+
+.game-board:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 게임 정보 패널 */
+.game-info {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.player-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.player-black {
+    background-color: #333;
+}
+
+.player-white {
+    background-color: #666;
+}
+
+.turn-indicator {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.turn-mine {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.turn-opponent {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* 매칭 대기 화면 */
+.matching-container {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.matching-spinner {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.matching-text {
+    font-size: 1.5rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+.cancel-matching {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* 게임 결과 모달 */
+.game-result-modal .modal-content {
+    text-align: center;
+    border-radius: 15px;
+}
+
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.result-win {
+    color: #28a745;
+}
+
+.result-lose {
+    color: #dc3545;
+}
+
+/* 프로필 페이지 */
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.stats-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.stats-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-transform: uppercase;
+}
+
+/* 전적 테이블 */
+.match-history-table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.match-win {
+    background-color: #d4edda;
+}
+
+.match-lose {
+    background-color: #f8d7da;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .game-board {
+        width: 95%;
+        height: 0;
+        padding-bottom: 95%;
+        position: relative;
+    }
+    
+    .game-board canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .player-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .stats-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* 애니메이션 */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* 알림 메시지 스타일 개선 */
+.alert {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+/* 버튼 스타일 개선 */
+.btn {
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 카드 그림자 효과 */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}

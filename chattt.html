@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chattt - C# 실시간 채팅 시스템</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .project-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .project-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .project-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .content-section {
+            padding: 4rem 0;
+        }
+        
+        .content-section:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: #2d3748;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            color: #2980b9;
+        }
+        
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .screenshot-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .screenshot-placeholder {
+            height: 300px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .screenshot-info {
+            padding: 1.5rem;
+        }
+        
+        .screenshot-info h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .protocol-table {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        
+        .protocol-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .protocol-table th,
+        .protocol-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .protocol-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .protocol-table code {
+            background-color: #e8f4fd;
+            color: #3498db;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .project-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshot-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">권용민</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">소개</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">프로젝트</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">연락처</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Project Hero -->
+    <section class="project-hero">
+        <div class="container">
+            <h1>Chattt</h1>
+            <p>
+                C# Windows Forms 기반의 실시간 채팅 클라이언트/서버 시스템입니다. 
+                TCP 소켓 통신, 사용자 인증, 멀티스레드 서버 아키텍처를 구현했습니다.
+            </p>
+            <div class="tech-badges">
+                <span class="tech-badge">C#</span>
+                <span class="tech-badge">TCP Socket</span>
+                <span class="tech-badge">Windows Forms</span>
+                <span class="tech-badge">Threading</span>
+                <span class="tech-badge">In-Memory DB</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="content-section">
+        <div class="container">
+            <a href="index.html#projects" class="back-button">
+                ← 프로젝트 목록으로 돌아가기
+            </a>
+            
+            <h2 class="section-title">프로젝트 개요</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #666; text-align: center; max-width: 800px; margin: 0 auto;">
+                Chattt는 네트워크 프로그래밍의 기본기를 탄탄히 다지기 위해 구현한 채팅 시스템입니다. 
+                로우레벨 TCP 소켓 통신부터 UI까지 모든 것을 직접 구현하여 네트워크 프로그래밍의 핵심을 학습했습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Demo Video -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">프로젝트 시연 영상</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; color: #666;">실시간 채팅 기능과 주요 특징들을 영상으로 확인해보세요!</p>
+            </div>
+            <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 0 auto; max-width: 800px;">
+                <iframe 
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"
+                    src="https://www.youtube.com/embed/Qka2e_elJz0" 
+                    title="Chattt 프로젝트 시연 영상"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">핵심 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>사용자 인증 시스템</h3>
+                    <p>회원가입과 로그인 기능을 구현했습니다. 사용자 정보는 서버의 인메모리 데이터베이스에 저장되며, 중복 로그인을 방지합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>실시간 메시징</h3>
+                    <p>TCP 소켓을 통한 실시간 메시지 전송과 수신을 구현했습니다. 모든 메시지는 즉시 다른 참가자들에게 전달됩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>참가자 관리</h3>
+                    <p>현재 채팅방에 접속 중인 사용자 목록을 실시간으로 관리합니다. 사용자의 입장과 퇴장이 자동으로 다른 참가자들에게 알림됩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>멀티스레드 서버</h3>
+                    <p>다수의 클라이언트를 동시에 처리할 수 있는 멀티스레드 서버 아키텍처를 구현했습니다. 각 클라이언트는 독립적인 스레드에서 처리됩니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>TCP 소켓 통신</h3>
+                    <p>안정적인 데이터 전송을 위해 TCP 프로토콜을 사용했습니다. 연결 상태 모니터링과 자동 재연결 기능을 포함합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Windows Forms UI</h3>
+                    <p>직관적이고 사용하기 쉬운 Windows Forms 기반 사용자 인터페이스를 제공합니다. 반응형 디자인으로 다양한 화면 크기를 지원합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocol Documentation -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">네트워크 프로토콜</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">
+                콜론(:)으로 구분된 텍스트 메시지를 사용하는 간단하고 효율적인 프로토콜을 설계했습니다.
+            </p>
+            
+            <div class="protocol-table">
+                <h3 style="margin-bottom: 1rem; color: #2c3e50;">클라이언트 → 서버 요청</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>명령어</th>
+                            <th>필드 1</th>
+                            <th>필드 2</th>
+                            <th>예시</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>LOGIN</code></td>
+                            <td>사용자 ID</td>
+                            <td>비밀번호</td>
+                            <td><code>LOGIN:user1:pass1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>REGISTER</code></td>
+                            <td>사용자 ID</td>
+                            <td>비밀번호</td>
+                            <td><code>REGISTER:newuser:newpass</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>CHAT_MESSAGE</code></td>
+                            <td>발신자 ID</td>
+                            <td>메시지 내용</td>
+                            <td><code>CHAT_MESSAGE:user1:Hello!</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>REQUEST_PARTICIPANTS</code></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><code>REQUEST_PARTICIPANTS</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="protocol-table">
+                <h3 style="margin-bottom: 1rem; color: #2c3e50;">서버 → 클라이언트 응답 및 알림</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>명령어</th>
+                            <th>필드 1</th>
+                            <th>필드 2</th>
+                            <th>예시</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>LOGIN_SUCCESS</code></td>
+                            <td>사용자 ID</td>
+                            <td>-</td>
+                            <td><code>LOGIN_SUCCESS:user1</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>LOGIN_FAIL</code></td>
+                            <td>실패 이유</td>
+                            <td>-</td>
+                            <td><code>LOGIN_FAIL:InvalidUser</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>REGISTER_SUCCESS</code></td>
+                            <td>사용자 ID</td>
+                            <td>-</td>
+                            <td><code>REGISTER_SUCCESS:newuser</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>CHAT_MESSAGE</code></td>
+                            <td>발신자 ID</td>
+                            <td>메시지 내용</td>
+                            <td><code>CHAT_MESSAGE:user2:Hi there!</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>USER_JOINED</code></td>
+                            <td>사용자 ID</td>
+                            <td>-</td>
+                            <td><code>USER_JOINED:user3</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>USER_LEFT</code></td>
+                            <td>사용자 ID</td>
+                            <td>-</td>
+                            <td><code>USER_LEFT:user3</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>PARTICIPANTS_LIST</code></td>
+                            <td>참가자 목록</td>
+                            <td>-</td>
+                            <td><code>PARTICIPANTS_LIST:user1,user2,user3</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">시스템 아키텍처</h2>
+            <div class="architecture-diagram">
+                <h3 style="margin-bottom: 2rem; color: #2c3e50;">클라이언트-서버 구조</h3>
+                <pre style="text-align: left; background: #f8f9fa; padding: 2rem; border-radius: 10px; font-family: 'Courier New', monospace; color: #2c3e50; overflow-x: auto;">
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Client A      │    │                 │    │   Client B      │
+│  Windows Forms  │────│   Chat Server   │────│  Windows Forms  │
+│   (TCP Socket)  │    │  (Port: 12345)  │    │   (TCP Socket)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                               │
+                               │
+                       ┌───────────────┐
+                       │  In-Memory    │
+                       │   Database    │
+                       │ • User Data   │
+                       │ • Sessions    │
+                       └───────────────┘
+                </pre>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50; text-align: center;">서버 내부 구조</h3>
+            <div class="architecture-diagram">
+                <pre style="text-align: left; background: #f8f9fa; padding: 2rem; border-radius: 10px; font-family: 'Courier New', monospace; color: #2c3e50; overflow-x: auto;">
+┌─────────────────┐
+│   TcpListener   │ ← Port 12345에서 연결 대기
+└─────────────────┘
+         │
+         ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐  
+│ ClientSession   │    │ ClientSession   │    │ ClientSession   │
+│   Thread A      │    │   Thread B      │    │   Thread C      │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         └───────────────────────┼───────────────────────┘
+                                 ▼
+                    ┌─────────────────────────┐
+                    │    ClientManager        │
+                    │  (Thread-Safe Access)   │
+                    │  • User Authentication  │
+                    │  • Message Broadcasting │
+                    │  • Session Management   │
+                    └─────────────────────────┘
+                                 │
+                                 ▼
+                    ┌─────────────────────────┐
+                    │     UserManager         │
+                    │   (In-Memory Store)     │
+                    │  • User Registration    │
+                    │  • Login Validation     │
+                    │  • Duplicate Prevention │
+                    └─────────────────────────┘
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Details -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">구현 세부사항</h2>
+            
+            <h3 style="margin-bottom: 2rem; color: #2c3e50;">서버 핵심 코드</h3>
+            <div class="code-example">
+                <pre><code class="language-csharp">public class ChatServer
+{
+    private TcpListener _tcpListener;
+    private ClientManager _clientManager;
+    private UserManager _userManager;
+    private bool _isRunning;
+    
+    public void Start()
+    {
+        _tcpListener = new TcpListener(IPAddress.Any, 12345);
+        _clientManager = new ClientManager();
+        _userManager = new UserManager();
+        
+        _tcpListener.Start();
+        _isRunning = true;
+        
+        Console.WriteLine("Chat Server started on port 12345...");
+        
+        // 클라이언트 연결 대기 루프
+        while (_isRunning)
+        {
+            try
+            {
+                TcpClient tcpClient = _tcpListener.AcceptTcpClient();
+                Console.WriteLine($"New client connected: {tcpClient.Client.RemoteEndPoint}");
+                
+                // 각 클라이언트를 별도 스레드에서 처리
+                ClientSession session = new ClientSession(tcpClient, _clientManager, _userManager);
+                Thread clientThread = new Thread(session.HandleClient);
+                clientThread.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error accepting client: {ex.Message}");
+            }
+        }
+    }
+}
+
+public class ClientSession
+{
+    private TcpClient _tcpClient;
+    private NetworkStream _networkStream;
+    private StreamReader _reader;
+    private StreamWriter _writer;
+    private ClientManager _clientManager;
+    private UserManager _userManager;
+    private string _username;
+    
+    public void HandleClient()
+    {
+        try
+        {
+            _networkStream = _tcpClient.GetStream();
+            _reader = new StreamReader(_networkStream);
+            _writer = new StreamWriter(_networkStream) { AutoFlush = true };
+            
+            string message;
+            while ((message = _reader.ReadLine()) != null)
+            {
+                ProcessMessage(message);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Client session error: {ex.Message}");
+        }
+        finally
+        {
+            Cleanup();
+        }
+    }
+    
+    private void ProcessMessage(string message)
+    {
+        string[] parts = message.Split(':');
+        string command = parts[0];
+        
+        switch (command)
+        {
+            case "LOGIN":
+                HandleLogin(parts[1], parts[2]);
+                break;
+            case "REGISTER":
+                HandleRegister(parts[1], parts[2]);
+                break;
+            case "CHAT_MESSAGE":
+                HandleChatMessage(parts[1], parts[2]);
+                break;
+            case "REQUEST_PARTICIPANTS":
+                HandleParticipantsRequest();
+                break;
+        }
+    }
+    
+    private void HandleLogin(string username, string password)
+    {
+        if (_userManager.ValidateUser(username, password))
+        {
+            if (_clientManager.IsUserLoggedIn(username))
+            {
+                SendMessage("LOGIN_FAIL:AlreadyLoggedIn");
+                return;
+            }
+            
+            _username = username;
+            _clientManager.AddClient(this, username);
+            SendMessage($"LOGIN_SUCCESS:{username}");
+            
+            // 다른 클라이언트들에게 입장 알림
+            _clientManager.BroadcastMessage($"USER_JOINED:{username}", username);
+        }
+        else
+        {
+            SendMessage("LOGIN_FAIL:InvalidUser");
+        }
+    }
+    
+    private void HandleChatMessage(string sender, string messageContent)
+    {
+        if (_username == sender)
+        {
+            // 모든 클라이언트에게 메시지 브로드캐스트
+            _clientManager.BroadcastMessage($"CHAT_MESSAGE:{sender}:{messageContent}");
+        }
+    }
+}</code></pre>
+            </div>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">스레드 안전성 보장</h3>
+            <div class="code-example">
+                <pre><code class="language-csharp">public class ClientManager
+{
+    private readonly Dictionary&lt;string, ClientSession&gt; _clients = new();
+    private readonly object _lock = new object();
+    
+    public void AddClient(ClientSession session, string username)
+    {
+        lock (_lock)
+        {
+            _clients[username] = session;
+        }
+        Console.WriteLine($"User {username} added to client manager. Total clients: {_clients.Count}");
+    }
+    
+    public void RemoveClient(string username)
+    {
+        lock (_lock)
+        {
+            if (_clients.ContainsKey(username))
+            {
+                _clients.Remove(username);
+                Console.WriteLine($"User {username} removed from client manager. Total clients: {_clients.Count}");
+            }
+        }
+    }
+    
+    public void BroadcastMessage(string message, string excludeUser = null)
+    {
+        List&lt;ClientSession&gt; clientsToSend;
+        
+        lock (_lock)
+        {
+            clientsToSend = _clients.Values
+                .Where(client => excludeUser == null || client.Username != excludeUser)
+                .ToList();
+        }
+        
+        // 락 외부에서 메시지 전송 (데드락 방지)
+        foreach (var client in clientsToSend)
+        {
+            try
+            {
+                client.SendMessage(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to send message to client: {ex.Message}");
+            }
+        }
+    }
+    
+    public bool IsUserLoggedIn(string username)
+    {
+        lock (_lock)
+        {
+            return _clients.ContainsKey(username);
+        }
+    }
+    
+    public List&lt;string&gt; GetParticipantsList()
+    {
+        lock (_lock)
+        {
+            return _clients.Keys.ToList();
+        }
+    }
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Challenges -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">기술적 도전과 해결</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔄 도전: 멀티스레드 동기화</h3>
+                    <p><strong>문제:</strong> 여러 클라이언트가 동시에 접속할 때 데이터 레이스 발생</p>
+                    <p><strong>해결:</strong> lock 키워드를 사용한 임계영역 보호와 스레드 안전한 컬렉션 사용</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔗 도전: 연결 상태 관리</h3>
+                    <p><strong>문제:</strong> 클라이언트의 비정상 종료 시 서버 리소스 정리</p>
+                    <p><strong>해결:</strong> try-catch-finally 블록과 using 문을 활용한 안전한 리소스 해제</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📡 도전: 실시간 메시지 전달</h3>
+                    <p><strong>문제:</strong> 메시지 브로드캐스트 시 일부 클라이언트 실패 처리</p>
+                    <p><strong>해결:</strong> 개별 클라이언트 전송 실패를 격리하여 전체 서비스 안정성 확보</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🖥️ 도전: UI 응답성</h3>
+                    <p><strong>문제:</strong> 네트워크 I/O로 인한 UI 블로킹</p>
+                    <p><strong>해결:</strong> BackgroundWorker와 Invoke 패턴으로 UI 스레드와 네트워크 스레드 분리</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Configuration -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">네트워크 설정</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>로컬 네트워크 테스트</h3>
+                    <p>같은 네트워크의 여러 컴퓨터에서 서버 IP와 포트 12345를 통해 접속하여 채팅을 테스트할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>외부 네트워크 접속</h3>
+                    <p>포트 포워딩(TCP:12345) 설정을 통해 인터넷을 통한 외부 접속이 가능합니다. 방화벽 설정 필요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>설정 가능한 옵션</h3>
+                    <p>서버 IP 주소와 포트 번호는 클라이언트 코드에서 쉽게 변경할 수 있도록 상수로 정의되어 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Outcomes -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">학습 성과</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>TCP 소켓 프로그래밍</h3>
+                    <p>로우레벨 TCP 소켓 통신의 원리를 이해하고, 안정적인 데이터 송수신 로직을 구현했습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧵</div>
+                    <h3>멀티스레딩</h3>
+                    <p>다중 클라이언트 처리를 위한 멀티스레드 프로그래밍과 스레드 안전성 확보 방법을 학습했습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>프로토콜 설계</h3>
+                    <p>효율적이고 확장 가능한 텍스트 기반 통신 프로토콜을 설계하고 구현했습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>사용자 인터페이스</h3>
+                    <p>Windows Forms를 활용한 직관적인 사용자 인터페이스 설계와 이벤트 처리를 학습했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links and Resources -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">프로젝트 링크</h2>
+            <div style="text-align: center;">
+                <div class="feature-card" style="text-align: center; max-width: 400px; margin: 0 auto;">
+                    <div class="feature-icon">📁</div>
+                    <h3>GitHub Repository</h3>
+                    <p>전체 소스코드와 빌드 방법을 확인하실 수 있습니다.</p>
+                    <a href="https://github.com/ArsnDev/Chattt" class="btn btn-primary" style="margin-top: 1rem;">GitHub 보기</a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html#projects" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+                    다른 프로젝트도 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 권용민. 모든 권리 보유.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">홈</a>
+                    <a href="index.html#projects">프로젝트</a>
+                    <a href="index.html#contact">연락처</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

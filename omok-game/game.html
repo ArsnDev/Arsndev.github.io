@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오목 게임</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- 게임 보드 -->
+                <div class="game-board-container">
+                    <canvas id="gameBoard" width="570" height="570"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- 사용자 정보 -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">플레이어 정보</h5>
+                        <p id="userInfo" class="card-text">로딩 중...</p>
+                    </div>
+                </div>
+
+                <!-- 로비 화면 -->
+                <div id="lobbyScreen" class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">게임 로비</h5>
+                        <p>상대방과 매칭을 시작하세요!</p>
+                        <div class="alert alert-info">
+                            <small>🎮 <strong>혼자 테스트하기:</strong> 창을 2개 띄우고 다른 계정으로 로그인하여 매칭해보세요!</small>
+                        </div>
+                        <button id="startMatchingBtn" class="btn btn-primary">매칭 시작</button>
+                    </div>
+                </div>
+
+                <!-- 매칭 대기 화면 -->
+                <div id="matchingScreen" class="card mb-3 d-none">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">매칭 중...</h5>
+                        <p>다른 플레이어를 찾고 있습니다. 잠시만 기다려주세요.</p>
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <br>
+                        <div class="alert alert-warning">
+                            <small>⏰ 매칭에 시간이 걸릴 수 있습니다. 다른 플레이어의 접속을 기다리는 중입니다.</small>
+                        </div>
+                        <button id="cancelMatchingBtn" class="btn btn-secondary">매칭 취소</button>
+                    </div>
+                </div>
+
+                <!-- 게임 화면 -->
+                <div id="gameScreen" class="card mb-3 d-none">
+                    <div class="card-body">
+                        <h5 class="card-title">게임 진행 중</h5>
+                        
+                        <!-- 플레이어 정보 -->
+                        <div class="players-info mb-3">
+                            <div class="player-info">
+                                <span id="player1Info">플레이어 1</span>
+                            </div>
+                            <div class="player-info">
+                                <span id="player2Info">플레이어 2</span>
+                            </div>
+                        </div>
+
+                        <!-- 턴 표시 -->
+                        <div id="turnIndicator" class="turn-indicator mb-3">
+                            게임 준비 중...
+                        </div>
+
+                        <!-- 게임 버튼들 -->
+                        <div class="game-buttons">
+                            <button id="forfeitBtn" class="btn btn-danger btn-sm">기권</button>
+                            <button id="playAgainBtn" class="btn btn-success btn-sm">다시 플레이</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.0/signalr.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/signalr.js"></script>
+    <script src="js/game.js"></script>
+    
+    <script>
+        // 페이지 로드 시 게임 초기화
+        document.addEventListener('DOMContentLoaded', function() {
+            SimpleGame.init();
+        });
+    </script>
+</body>
+</html>

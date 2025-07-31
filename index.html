@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임서버 개발자 포트폴리오 - 권용민</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">권용민</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">자기소개</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">프로젝트</a></li>
+                <li class="nav-item"><a href="https://arsen-cv.tistory.com/" class="nav-link" target="_blank">기술블로그</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">기술스택</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">연락처</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">게임서버 개발자</h1>
+                <h2 class="hero-name">권용민</h2>
+                <p class="hero-description">
+                    C++과 C#을 활용한 고성능 멀티플레이어 게임 서버 개발자입니다.<br>
+                    실시간 네트워킹, 서버 아키텍처 설계, 게임 시스템 개발에 깊은 관심과 경험을 가지고 있습니다.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+                    <a href="#contact" class="btn btn-secondary">연락하기</a>
+                    <a href="portfolio-pdf.html" target="_blank" class="btn btn-success">📄 PDF 포트폴리오</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="profile_picture.JPG" alt="권용민 프로필 사진" class="profile-picture">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">소개</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>게임서버 개발에 대한 열정</h3>
+                    <p>
+                        멀티플레이어 게임의 복잡한 시스템과 실시간 네트워킹에 매력을 느끼며 
+                        게임서버 개발 분야에 뛰어들었습니다. C++과 C#을 활용하여 
+                        안정적이고 확장 가능한 게임 서버를 구축하는 것이 제 전문 분야입니다.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <h4>💻 주요 기술</h4>
+                            <p>C++20, C#, TCP/UDP, ASP.NET Core, SignalR, Unity</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-education">
+                    <div class="highlight-item">
+                        <h4>🎓 전공 및 학습영역</h4>
+                        <div class="education-content">
+                            <div class="education-info">
+                                <img src="korea_university_logo.png" alt="고려대학교 로고" class="university-logo-small">
+                                <div class="education-text">
+                                    <strong>고려대학교 기계공학과 학사</strong> (졸업)
+                                    <br><span class="education-note">기계공학 전공을 통해 체계적인 공학적 사고와 문제 해결 능력을 길렀고, 수학적 사고와 논리적 능력이 더 뛰어납니다.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="about.html" class="btn btn-primary">자세한 자기소개 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">프로젝트</h2>
+            <div class="projects-grid">
+                <!-- CppMMO Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="icon-server"></i>
+                        </div>
+                        <div class="project-title-section">
+                            <h3 class="project-title">CppMMO</h3>
+                            <p class="project-subtitle">C++ 멀티플레이어 게임 서버</p>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge production">완성</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>C++20과 Boost.Asio를 기반으로 구현한 고성능 실시간 멀티플레이어 MMO 서버입니다.</p>
+                        <ul class="project-features">
+                            <li>30 TPS 게임 루프로 안정적인 실시간 처리</li>
+                            <li>개인 PC에서 600명 동시 접속 테스트 완료</li>
+                            <li>QuadTree AOI 시스템으로 공간 최적화</li>
+                            <li>FlatBuffers 기반 효율적인 패킷 통신</li>
+                            <li>Server Authority 기반 치트 방지</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++20</span>
+                        <span class="tech-tag">Boost.Asio</span>
+                        <span class="tech-tag">FlatBuffers</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <a href="cppmmo.html" class="btn btn-secondary">자세히 보기</a>
+                        <a href="https://github.com/ArsnDev/CppMMO" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- OmokServer Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="icon-game"></i>
+                        </div>
+                        <div class="project-title-section">
+                            <h3 class="project-title">OmokServer</h3>
+                            <p class="project-subtitle">C# 실시간 오목 게임 서버</p>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge production">완성</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>ASP.NET Core와 SignalR을 활용한 온라인 오목 게임 서버입니다. <strong>실제로 게임을 체험해볼 수 있습니다!</strong></p>
+                        <ul class="project-features">
+                            <li>SignalR을 통한 실시간 양방향 통신</li>
+                            <li>JWT 기반 사용자 인증 시스템</li>
+                            <li>Server Authority 기반 게임 로직</li>
+                            <li>인메모리 매치메이킹 시스템</li>
+                            <li>게임 상태 관리 및 승패 판정</li>
+                            <li>경기 결과 데이터베이스 저장</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">ASP.NET Core</span>
+                        <span class="tech-tag">SignalR</span>
+                        <span class="tech-tag">JWT</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <div class="project-links" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <a href="omok-game/" class="btn btn-primary">체험하기</a>
+                        <a href="https://www.youtube.com/watch?v=wK0cqr8DZhA" class="btn btn-success" target="_blank">🎬 시연영상</a>
+                        <a href="omokserver.html" class="btn btn-secondary">자세히 보기</a>
+                        <a href="https://github.com/ArsnDev/Omok_Server" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Chattt Project -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="icon-chat"></i>
+                        </div>
+                        <div class="project-title-section">
+                            <h3 class="project-title">Chattt</h3>
+                            <p class="project-subtitle">C# 실시간 채팅 시스템</p>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge production">완성</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>C# Windows Forms 기반의 실시간 채팅 클라이언트/서버 시스템입니다.</p>
+                        <ul class="project-features">
+                            <li>TCP 소켓 기반 실시간 메시징</li>
+                            <li>사용자 인증 및 회원가입 시스템</li>
+                            <li>실시간 참가자 목록 관리</li>
+                            <li>멀티스레드 서버 아키텍처</li>
+                            <li>Windows Forms UI</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">TCP Socket</span>
+                        <span class="tech-tag">Windows Forms</span>
+                        <span class="tech-tag">Threading</span>
+                    </div>
+                    <div class="project-links" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <a href="https://www.youtube.com/watch?v=Qka2e_elJz0" class="btn btn-success" target="_blank">🎬 시연영상</a>
+                        <a href="chattt.html" class="btn btn-secondary">자세히 보기</a>
+                        <a href="https://github.com/ArsnDev/Chattt" class="btn btn-secondary" style="grid-column: 1 / 2;">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">기술 스택</h2>
+            <div class="skills-content">
+                <div class="skills-category">
+                    <h3>프로그래밍 언어</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-name">C++</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">C#</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Python</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>서버 기술</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-name">TCP/UDP Networking</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">ASP.NET Core</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">SignalR</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Boost.Asio</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3>데이터베이스 & 도구</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-name">MySQL</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Redis</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Docker</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Unity</div>
+                            <div class="skill-level">
+                                <div class="skill-bar" data-level="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">연락처</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>개발 관련 질문이나 협업 제안 환영합니다</h3>
+                    <p>게임서버 개발이나 협업에 관심이 있으시다면 언제든 연락주세요.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="icon-email"></i>
+                            <div>
+                                <h4>이메일</h4>
+                                <p>clumsyrhymer@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="icon-github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <p>github.com/ArsnDev</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="이름" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="이메일" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="제목" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="메시지" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">메시지 보내기</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; Arsndev</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">홈</a>
+                    <a href="#projects">프로젝트</a>
+                    <a href="#contact">연락처</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
