@@ -496,9 +496,16 @@ public:
                     </div>
                 </div>
                 <div class="timeline-item">
+                    <div class="timeline-icon">🎯</div>
+                    <div class="timeline-content">
+                        <h4>7단계: 클라이언트 예측 시스템</h4>
+                        <p>Client Prediction and Reconciliation 시스템 구현, Fixed Timestep 게임 루프 적용</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
                     <div class="timeline-icon">🐳</div>
                     <div class="timeline-content">
-                        <h4>7단계: 프로덕션 준비</h4>
+                        <h4>8단계: 프로덕션 준비</h4>
                         <p>Docker 컨테이너화, 프로토콜 정리, 레거시 코드 정리, 시스템 모니터링 및 부하 테스트</p>
                     </div>
                 </div>
@@ -574,6 +581,25 @@ public:
                     <div class="feature-icon">🔐</div>
                     <h3>세션 및 인증 시스템</h3>
                     <p>ASP.NET Core AuthServer와 Redis를 연동한 인증 시스템을 구현했습니다. 세션 추적 및 고정 스폰 시스템을 개선하여 플레이어 연결 안정성을 향상시켰습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>클라이언트 예측 및 조정</h3>
+                    <p>Client Prediction and Reconciliation 시스템을 구현했습니다. Fixed Timestep 게임 루프와 함께 클라이언트 측 예측을 통해 네트워크 지연을 보상하고 반응성을 향상시켰습니다.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #2c3e50;">개발 예정 기능</h3>
+            <div class="feature-grid">
+                <div class="feature-card" style="border-left: 4px solid #f39c12;">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Entity Interpolation</h3>
+                    <p>서버 스냅샷 간의 부드러운 보간을 통해 더 매끄러운 게임 경험을 제공할 예정입니다. 클라이언트에서 엔티티 움직임을 보간하여 네트워크 지연을 숨기는 기술을 구현할 계획입니다.</p>
+                </div>
+                <div class="feature-card" style="border-left: 4px solid #e74c3c;">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Lag Compensation</h3>
+                    <p>히트스캔 무기와 상호작용을 위한 지연 보상 시스템을 구현할 예정입니다. 플레이어의 네트워크 지연을 고려하여 과거 게임 상태를 재구성하는 기술을 학습하고 적용할 계획입니다.</p>
                 </div>
             </div>
         </div>
